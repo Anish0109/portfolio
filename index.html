@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Anish Patil | Car animation in Blender</title>
+<meta name="description" content="Anish Patil, an engineer who animates cars in Blender. Sweep your headlights through the dark to find the animations.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Anish Patil | Car animation in Blender">
+<meta property="og:description" content="Sweep your headlights through the dark to find my car animations, all made in Blender.">
+<meta name="theme-color" content="#000000">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-20 -20 40 40'%3E%3Crect x='-20' y='-20' width='40' height='40' rx='8' fill='%23000'/%3E%3Ccircle r='13' fill='none' stroke='%23ECE8E1' stroke-width='3'/%3E%3Cpath d='M0 0 L0 12 M0 0 L-11 -5 M0 0 L11 -5' stroke='%23ECE8E1' stroke-width='2.6' stroke-linecap='round'/%3E%3Crect x='-2' y='-16' width='4' height='4' fill='%23F39A1E'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<!-- The texts and the list of videos are in content.js. The look is in style.css. app.js runs the 3D scene. -->
+<div class="wrap">
+  <div class="stage" id="stage" tabindex="-1" aria-label="A dark sphere around you with my car animations hidden in it. Move the mouse to any edge to turn and point the headlights to reveal a video. With the keyboard, the arrow keys turn and Enter opens the video you have lit.">
+    <canvas id="gl"></canvas>
+    <div class="hud id"><b>Anish Patil</b><span>Car animation in Blender</span></div>
+    <p class="hud keys" id="keys">The mouse aims your headlights. Push to any edge to turn. Click a lit video to watch it with sound.</p>
+    <p class="hud whisper" aria-live="polite"><span id="whisper"></span></p>
+    <div class="hud edge l" id="edgeL"><span>‹‹</span></div>
+    <div class="hud edge r" id="edgeR"><span>››</span></div>
+    <div class="hud edge t" id="edgeT"><svg width="40" height="22" viewBox="0 0 40 22" aria-hidden="true"><path d="M4 18 L20 5 L36 18 M10 21 L20 13 L30 21" fill="none" stroke="#F6B25A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="hud edge b" id="edgeB"><svg width="40" height="22" viewBox="0 0 40 22" aria-hidden="true"><path d="M4 4 L20 17 L36 4 M10 1 L20 9 L30 1" fill="none" stroke="#F6B25A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="hud status" id="status"><i></i><span id="status-t">Sweep the headlights to find a video</span></div>
+    <div class="hud meter">
+      <svg class="wheel" id="wheel" viewBox="-20 -20 40 40" aria-hidden="true"><circle r="16" fill="none" stroke="#d8d4cc" stroke-width="3"/><path d="M0 0 L0 15 M0 0 L-14 -6 M0 0 L14 -6" stroke="#d8d4cc" stroke-width="2.6" stroke-linecap="round"/><rect x="-2" y="-19" width="4" height="5" fill="#F39A1E"/></svg>
+    </div>
+    <button class="start" id="start" type="button" aria-label="Click to explore. My car animations are hidden in the dark, and your headlights are the only light.">
+      <span class="trailer" aria-hidden="true"><span id="trailer" class="out"></span></span>
+      <span class="words" aria-hidden="true">
+        <span class="layer ghost"><span class="l1" data-l1>Click to</span><span class="l2">explore</span></span>
+        <span class="layer fill"><span class="l1" data-l1>Click to</span><span class="l2">explore</span></span>
+      </span>
+      <span class="hint" aria-hidden="true" id="start-hint">Click anywhere, or press Enter</span>
+    </button>
+    <div class="intro" id="intro">
+      <div class="who"><b>Anish Patil</b><span>Engineer who animates cars in Blender</span></div>
+      <a class="li" href="https://www.linkedin.com/in/anish-patil-0488a62b6" target="_blank" rel="noopener">LinkedIn</a>
+      <div class="about"><p><strong>M.Eng. in Autonomous Driving</strong> and a backend developer. In Blender I set up the camera, the light and the motion of every shot.</p><p>Open to full-time roles in 3D, AI/ML and autonomous driving.</p></div>
+      <p class="sr" id="trailer-all"></p>
+    </div>
+    <div class="modal" id="modal" hidden role="dialog" aria-modal="true" aria-labelledby="modal-t">
+      <div class="box">
+        <div class="top"><h2 id="modal-t"></h2><button class="btn" id="modal-x" type="button">Close</button></div>
+        <div class="media" id="modal-media"></div>
+      </div>
+    </div>
+    <div class="reticle" id="reticle"><i></i><i></i></div>
+  </div>
+</div>
+<noscript><div class="no3d"><p>This portfolio needs JavaScript to show the animations.</p></div></noscript>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js" integrity="sha384-CI3ELBVUz9XQO+97x6nwMDPosPR5XvsxW2ua7N1Xeygeh1IxtgqtCkGfQY9WWdHu" crossorigin="anonymous"></script>
+<script src="content.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
